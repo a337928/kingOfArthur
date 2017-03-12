@@ -48,7 +48,7 @@ public class CommonAction {
             response.setContentType("application/json");
             response.setHeader("Cache-Control", "no-cache");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{\"msg\":\"调用成功\"} \n");
+            //response.getWriter().write("{\"msg\":\"调用成功\"} \n");
             for (Object map:list){
                 Map row = (Map)map;
                 TestBean testB = (TestBean) BeanAssembly.getBean(row, TestBean.class);
