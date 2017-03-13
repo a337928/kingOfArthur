@@ -1,5 +1,7 @@
 package com.arthur.action;
 
+import com.arthur.annotation.Query;
+import com.arthur.annotationProcess.ProcessQuery;
 import com.arthur.bean.TestBean;
 import com.arthur.db.BaseDaoForMysql;
 import com.arthur.util.BeanAssembly;
@@ -28,8 +30,9 @@ public class CommonAction {
     @Resource
     private DataSource dataSource;
 
-    @RequestMapping(value = "/demo.do", method = RequestMethod.GET)
-    String home() {
+    @RequestMapping(value = "/sqlDemo", method = RequestMethod.GET)
+    String sqlDemp() {
+        ProcessQuery.taskQuery(this.getClass());
         return "Hello World!";
     }
 
@@ -68,4 +71,9 @@ public class CommonAction {
             e.printStackTrace();
         }
     }
+    @Query(sql = "select * from test ")
+    private void sql (){
+
+    }
+
 }
