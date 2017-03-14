@@ -18,6 +18,7 @@ import javax.sql.DataSource;
  */
 @Repository
 public class BaseDaoForMysql extends BaseDao {
+
     @Resource
 	protected DataSource dataSource;
 	
@@ -29,4 +30,6 @@ public class BaseDaoForMysql extends BaseDao {
 	private String getOrderSql(boolean isWhere) throws Exception{
 		return "";
 	}
+
+
 }

@@ -10,7 +10,8 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface query {
-    public String sql();
+public @interface Query {
+
+    public String sql() ;
 
 }

@@ -15,13 +15,8 @@ public class ProcessQuery {
         int i = 0;
         for(Method method:cl.getDeclaredMethods()){
             Query q = method.getAnnotation(Query.class);
-            //for(Annotation annotation : annotations){
-            //    Query q = (Query) annotation;
-                if (q != null)
-                    System.out.print("sql:"+ q.sql() +" NO."+ i++ );
-            //}
-
-
+            if (q != null)
+                System.out.print("sql:"+ q.sql() +" NO."+ i++ );
         }
 
     }
