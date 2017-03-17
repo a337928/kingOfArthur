@@ -65,6 +65,12 @@
             <artifactId>druid</artifactId>
             <version>1.0.20</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.3</version>
+        </dependency>
     </dependencies>
 
     <build>

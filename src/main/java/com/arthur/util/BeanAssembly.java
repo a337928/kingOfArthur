@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class BeanAssembly {
 
-    public static Object getBean(Map map,Class bean)
+    public static  Object getBean(Map map,Class bean)
     {
 
         Class clazz = null;
