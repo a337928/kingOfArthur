@@ -43,6 +43,7 @@ public class ThreadImpl implements IThread {
     private  class  TestRunnable implements  Runnable{
 
         private String  testName;
+        private ThreadLocal<Integer> runNum = new ThreadLocal<Integer>();
 
         private TestRunnable(String runName){
             this.testName = runName;
@@ -51,6 +52,12 @@ public class ThreadImpl implements IThread {
 
         @Override
         public void run() {
+            Integer num = runNum.get();
+            if(num == null)
+                runNum.set(1);
+            else
+                runNum.set(++num);
+            System.out.print("runNum: " +  runNum.get() );
             System.out.print("runnableName: " +  this.testName + "begin \n" );
             try {
                 Thread.sleep(1000);
