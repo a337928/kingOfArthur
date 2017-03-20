@@ -32,7 +32,7 @@ public class ThreadImpl implements IThread {
 
     public void executor(){
         init();
-        for(Integer i = 0;i < 50;i++){
+        for(Integer i = 0;i < 10;i++){
             TestRunnable testR = new TestRunnable(runnableName + i);
             executor.execute(testR);
             System.out.print("Thread test : " +  ThreadImpl.executor.getPoolSize() + "\n" );

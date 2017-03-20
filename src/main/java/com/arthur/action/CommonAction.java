@@ -2,6 +2,7 @@ package com.arthur.action;
 
 import com.arthur.annotation.Query;
 import com.arthur.annotationProcess.ProcessQuery;
+import com.arthur.aop.Performance;
 import com.arthur.bean.TestBean;
 import com.arthur.db.BaseDaoForMysql;
 import com.arthur.util.BeanAssembly;
@@ -28,6 +29,9 @@ public class CommonAction {
     private BaseDaoForMysql baseDaoForMysql;
 
     @Resource
+    private Performance performance;
+
+    @Resource
     private DataSource dataSource;
 
     @RequestMapping(value = "/sqlDemo", method = RequestMethod.GET)
@@ -35,6 +39,12 @@ public class CommonAction {
         ProcessQuery.taskQuery(this.getClass());
         return "Hello World!";
     }
+
+    @RequestMapping("/aop")
+    public void aop(){
+        performance.perform();
+    }
+
 
     @RequestMapping(value ="/aa")
     public void test(HttpServletResponse response)  {
@@ -75,5 +85,8 @@ public class CommonAction {
     private void sql (){
 
     }
+
+
+
 
 }
