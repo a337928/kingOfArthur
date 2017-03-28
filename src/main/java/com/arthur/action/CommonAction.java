@@ -4,6 +4,7 @@ import com.arthur.annotation.Query;
 import com.arthur.annotationProcess.ProcessQuery;
 import com.arthur.aop.Performance;
 import com.arthur.bean.TestBean;
+import com.arthur.business.SpringTransactionExercise;
 import com.arthur.db.BaseDaoForMysql;
 import com.arthur.util.BeanAssembly;
 import org.hibernate.SessionFactory;
@@ -32,6 +33,9 @@ public class CommonAction {
     private Performance performance;
 
     @Resource
+    private SpringTransactionExercise springTransactionExercise;
+
+    @Resource
     private DataSource dataSource;
 
     @RequestMapping(value = "/sqlDemo", method = RequestMethod.GET)
@@ -45,12 +49,21 @@ public class CommonAction {
         performance.perform();
     }
 
+    @RequestMapping("/transaction")
+    public void transaction(){
+        TestBean testBean = new TestBean();
+        testBean.setId(10086);
+        testBean.setName("王滔");
+        springTransactionExercise.insert(testBean);
+    }
+
 
     @RequestMapping(value ="/aa")
     public void test(HttpServletResponse response)  {
         List list = null;
         try {
             baseDaoForMysql.setDataSource(dataSource);
+            String dd = "";
             list = baseDaoForMysql.queryForList("select * from test ");
 
         } catch (Exception e) {
