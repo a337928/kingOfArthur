@@ -31,7 +31,7 @@ public abstract class BaseDao {
 
 	protected List alArea = new ArrayList();
 
-	protected List alOrder = new ArrayList(); // ¸ñÊ½£ºa.field desc
+	protected List alOrder = new ArrayList(); // ï¿½ï¿½Ê½ï¿½ï¿½a.field desc
 
 	protected static final String DB_TYPE_ORALCE = "oracle";
 
@@ -52,7 +52,7 @@ public abstract class BaseDao {
 			try {
 				db_type = "";
 			} catch (Exception e) {
-				log.info("Î´ÉèÖÃÊı¾İ¿âÀàĞÍ»òÕß¸ñÊ½²»ÕıÈ·£¬ÏµÍ³Ä¬ÈÏÎªoracle£¡");
+				log.info("æœªè®¾ç½®æ•°æ®åº“ç±»å‹æˆ–è€…æ ¼å¼ä¸æ­£ç¡®ï¼Œç³»ç»Ÿé»˜è®¤ä¸ºoracleï¼");
 				db_type = DB_TYPE_MYSQL;
 			}
 		}
@@ -87,12 +87,10 @@ public abstract class BaseDao {
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-
-	/*
-	 * ÏŞÖÆ£ºÔÚ±ê×¼SQLÀï²»ÄÜ³öÏÖµÄ×Ö¶Î»ò±í±ğÃû£º±í±ğÃûpageView;×Ö¶ÎpageNum @function µÃµ½²»Í¬Êı¾İ¿âµÄ·ÖÒ³¼¼Êõ @param sql
-	 * :±ê×¼µÄSQLÓï¾ä @param pageStart Ò³¿ªÊ¼ @param pageSize Ò³´óĞ¡ @param db_type Êı¾İ¿âÀàĞÍ @return sql
-	 * :´ø·ÖÒ³µÄSQLÓï¾ä
-	 */
+    /* é™åˆ¶ï¼šåœ¨æ ‡å‡†SQLé‡Œä¸èƒ½å‡ºç°çš„å­—æ®µæˆ–è¡¨åˆ«åï¼šè¡¨åˆ«åpageView;å­—æ®µpageNum @function å¾—åˆ°ä¸åŒæ•°æ®åº“çš„åˆ†é¡µæŠ€æœ¯ @param sql
+     * :æ ‡å‡†çš„SQLè¯­å¥ @param pageStart é¡µå¼€å§‹ @param pageSize é¡µå¤§å° @param db_type æ•°æ®åº“ç±»å‹ @return sql
+     * :å¸¦åˆ†é¡µçš„SQLè¯­å¥
+	*/
 	public static String getPageSQL(String sql, long pageStart, int pageSize) {
 		long pageEnd = pageStart + pageSize;
 		StringBuffer retStr = new StringBuffer(sql);
