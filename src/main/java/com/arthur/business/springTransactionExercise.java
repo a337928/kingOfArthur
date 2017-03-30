@@ -6,4 +6,5 @@ import com.arthur.bean.TestBean;
 
 public interface SpringTransactionExercise {
     Boolean insert (TestBean testbean );
+
 }
