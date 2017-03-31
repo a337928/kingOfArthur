@@ -8,8 +8,14 @@ spring:
         username: root
         password: root
 
+
 redis:
     ip: 127.0.0.1
     port: 6379
     db: 1
     pwd: Zzjhc123!@#
+
+
+mybatis:
+    mapperLocations: classpath:*.xml
+    typeAliasesPackage: com.arthur.mybatis.mybatisDao;

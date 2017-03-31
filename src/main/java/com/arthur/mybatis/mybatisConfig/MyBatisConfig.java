@@ -5,8 +5,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -23,7 +26,18 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-public class MyBatisConfig implements TransactionManagementConfigurer {
+public class MyBatisConfig implements TransactionManagementConfigurer,EnvironmentAware {
+
+	private Environment environment;
+	private RelaxedPropertyResolver datasourcePropertyResolver;
+
+	//从application.yml中读
+	@Override
+	public void setEnvironment(Environment environment) {
+		this.environment = environment;
+		this.datasourcePropertyResolver = new RelaxedPropertyResolver(environment,
+				"mybatis.");
+	}
 
 	@Resource
 	DataSource dataSource;
@@ -32,13 +46,13 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
 	public SqlSessionFactory sqlSessionFactoryBean() {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dataSource);
-		bean.setTypeAliasesPackage("tk.mybatis.springboot.model");
+		bean.setTypeAliasesPackage(datasourcePropertyResolver.getProperty("typeAliasesPackage"));
 
 
 		//添加XML目录
 		ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		try {
-			bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
+			bean.setMapperLocations(resolver.getResources(datasourcePropertyResolver.getProperty("mapperLocations")));
 			return bean.getObject();
 		} catch (Exception e) {
 			e.printStackTrace();

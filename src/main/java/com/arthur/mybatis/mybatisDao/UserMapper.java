@@ -14,7 +14,7 @@ public interface UserMapper {
     @Select("SELECT * FROM USER WHERE NAME = #{name}")
     TestBean findByName(@Param("name") String name);
 
-    @Insert("INSERT INTO TEST(ID, NAME) VALUES(#{ID}, #{NAME})")
-    int insert(@Param("id") Long id, @Param("name") String name);
+    @Insert("INSERT INTO TEST(ID, NAME) VALUES(#{id}, #{name})")
+    void insert(@Param("id") Long id, @Param("name") String name);
 
 }
