@@ -66,10 +66,10 @@ public class DatabaseConfiguration implements EnvironmentAware {
     public LocalSessionFactoryBean sessionFactory() throws SQLException{
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
         localSessionFactoryBean.setDataSource(this.dataSource());
-        Properties properties1 = new Properties();
-        properties1.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
-        properties1.setProperty("hibernate.show_sql","false");
-        localSessionFactoryBean.setHibernateProperties(properties1);
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.show_sql","false");
+        localSessionFactoryBean.setHibernateProperties(properties);
         localSessionFactoryBean.setPackagesToScan("*");
         return localSessionFactoryBean;
     }
