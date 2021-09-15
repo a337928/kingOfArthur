@@ -10,21 +10,22 @@ import java.util.concurrent.*;
 public class CallableDemo {
     public static void  main (String[] args){
         ExecutorService exec = Executors.newCachedThreadPool();
-        List<Future<String>> list = new ArrayList<Future<String>>();
-        for(int i = 0;i < 10;i++)
+        List<Future<String>> list = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
             list.add(exec.submit(new TaskWithResult(i)));
-        for(Future<String> f:list)
+        }
+
+        for(Future<String> f : list){
             try {
-                System.out.println(f.get());
-            }catch (InterruptedException e){
+                System.out.println(f.get(100, TimeUnit.MILLISECONDS));
+            }catch (InterruptedException | ExecutionException e){
                 System.out.println(e);
-
-            } catch (ExecutionException e) {
+            } catch (TimeoutException e) {
                 e.printStackTrace();
-                System.out.println(e);
-
-            }finally {
+            } finally {
                 exec.shutdown();
             }
+        }
+
     }
 }
